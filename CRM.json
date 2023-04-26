@@ -1,0 +1,603 @@
+[
+    {
+        "id": "5a35277603f7017d",
+        "type": "tab",
+        "label": "CRM TIcs v1.0",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "498c037937c6f109",
+        "type": "ui_table",
+        "z": "5a35277603f7017d",
+        "group": "c345a7f4ca49c4c1",
+        "name": "",
+        "order": 1,
+        "width": "6",
+        "height": "11",
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 890,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "845d6c966f176925",
+        "type": "mysql",
+        "z": "5a35277603f7017d",
+        "mydb": "1899bc6a4ef86be0",
+        "name": "",
+        "x": 570,
+        "y": 540,
+        "wires": [
+            [
+                "498c037937c6f109"
+            ]
+        ]
+    },
+    {
+        "id": "5c7692d50e864c2a",
+        "type": "inject",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "2dc5e5f710d6af1b"
+            ]
+        ]
+    },
+    {
+        "id": "2dc5e5f710d6af1b",
+        "type": "function",
+        "z": "5a35277603f7017d",
+        "name": "function 2",
+        "func": "msg.topic ='SELECT * FROM aspirantes'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 540,
+        "wires": [
+            [
+                "845d6c966f176925"
+            ]
+        ]
+    },
+    {
+        "id": "5d5c84a349ccf254",
+        "type": "ui_table",
+        "z": "5a35277603f7017d",
+        "group": "c345a7f4ca49c4c1",
+        "name": "",
+        "order": 1,
+        "width": "11",
+        "height": "4",
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 1050,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "5379f86e049195ab",
+        "type": "mysql",
+        "z": "5a35277603f7017d",
+        "mydb": "1899bc6a4ef86be0",
+        "name": "",
+        "x": 770,
+        "y": 760,
+        "wires": [
+            [
+                "5d5c84a349ccf254",
+                "cb3763aef2e62b70"
+            ]
+        ]
+    },
+    {
+        "id": "5ec9a9af466f0b4a",
+        "type": "function",
+        "z": "5a35277603f7017d",
+        "name": "function 3",
+        "func": "\nmsg.topic = 'SELECT Correo FROM aspirantes'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1020,
+        "wires": [
+            [
+                "be7b0cd7f678983b"
+            ]
+        ]
+    },
+    {
+        "id": "918929144fa9a4e4",
+        "type": "ui_form",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "label": "Ingreso de usuarios",
+        "group": "d1b3ee5915f0f6fc",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Nombre",
+                "value": "Nombre",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Apellido Paterno",
+                "value": "ApellidoP",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Apellido Materno",
+                "value": "ApellidoM",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Correo",
+                "value": "Correo",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Telefono",
+                "value": "Telefono",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Nombre": "",
+            "ApellidoP": "",
+            "ApellidoM": "",
+            "Correo": "",
+            "Telefono": ""
+        },
+        "payload": "",
+        "submit": "Submit",
+        "cancel": "Cancle",
+        "topic": "Form",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "d0f6f1fd98c564aa",
+                "c8b6b3622c30a0bc"
+            ]
+        ]
+    },
+    {
+        "id": "d0f6f1fd98c564aa",
+        "type": "debug",
+        "z": "5a35277603f7017d",
+        "name": "Dashboard Log",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "cb3763aef2e62b70",
+        "type": "debug",
+        "z": "5a35277603f7017d",
+        "name": "Dashboard Log",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "06525d6647069968",
+        "type": "debug",
+        "z": "5a35277603f7017d",
+        "name": "Dashboard Log",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "c8b6b3622c30a0bc",
+        "type": "sqlstring-format",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "query": " INSERT INTO aspirantes \n (Nombre, ApellidoP, ApellidoM, Correo, Telefono) \n VALUES ( ?,?,?,?,?);\n",
+        "vars": "payload.Nombre,payload.ApellidoP,payload.ApellidoM,payload.Correo,payload.Telefono",
+        "outField": "topic",
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "716bf7535210c62a",
+                "5379f86e049195ab"
+            ]
+        ]
+    },
+    {
+        "id": "716bf7535210c62a",
+        "type": "debug",
+        "z": "5a35277603f7017d",
+        "name": "Dashboard Log",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "eef8d1682c365d91",
+        "type": "mysql-r2",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "host": "localhost",
+        "database": "",
+        "username": "",
+        "password": "",
+        "sql": "",
+        "x": 140,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be7b0cd7f678983b",
+        "type": "mysql",
+        "z": "5a35277603f7017d",
+        "mydb": "1899bc6a4ef86be0",
+        "name": "",
+        "x": 690,
+        "y": 1000,
+        "wires": [
+            [
+                "06525d6647069968",
+                "beaae951df611a50"
+            ]
+        ]
+    },
+    {
+        "id": "7a6be43910d14e01",
+        "type": "inject",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 1000,
+        "wires": [
+            [
+                "5ec9a9af466f0b4a"
+            ]
+        ]
+    },
+    {
+        "id": "9266ba1f397b3d62",
+        "type": "function",
+        "z": "5a35277603f7017d",
+        "name": "function 4",
+        "func": "let data = msg.payload;\n//msg.payload = data.length;\n//msg.payload = data[0].Telefono;\nfor (let index = 0; index < data.length; index++) {\n    msg.payload = data[index].Telefono;\n    return msg;\n    \n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "998f07d709a8f298",
+        "type": "debug",
+        "z": "5a35277603f7017d",
+        "name": "Dashboard Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "beaae951df611a50",
+        "type": "split",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 930,
+        "y": 1060,
+        "wires": [
+            [
+                "998f07d709a8f298"
+            ]
+        ]
+    },
+    {
+        "id": "53d8643595af1f8a",
+        "type": "telegram sender",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "bot": "f8e2a155c79689dd",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1530,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac46bd4f44b8eb65",
+        "type": "ui_form",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "label": "Consulta de usuarios",
+        "group": "08e714efc0a7691b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Nombre",
+                "value": "Nombre",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Nombre": ""
+        },
+        "payload": "",
+        "submit": "Submit",
+        "cancel": "Cancle",
+        "topic": "Form",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 180,
+        "y": 1220,
+        "wires": [
+            [
+                "1e97663332831414"
+            ]
+        ]
+    },
+    {
+        "id": "992fb581f17dc162",
+        "type": "ui_table",
+        "z": "5a35277603f7017d",
+        "group": "715dc720058e50a5",
+        "name": "",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 890,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "eacde6a965027175",
+        "type": "mysql",
+        "z": "5a35277603f7017d",
+        "mydb": "1899bc6a4ef86be0",
+        "name": "",
+        "x": 630,
+        "y": 1280,
+        "wires": [
+            [
+                "992fb581f17dc162",
+                "ee885e58ac99fc83"
+            ]
+        ]
+    },
+    {
+        "id": "ee885e58ac99fc83",
+        "type": "debug",
+        "z": "5a35277603f7017d",
+        "name": "Dashboard Log",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "1e97663332831414",
+        "type": "sqlstring-format",
+        "z": "5a35277603f7017d",
+        "name": "",
+        "query": "Select * from aspirantes where Nombre = ?\n\n",
+        "vars": "payload.Nombre",
+        "outField": "topic",
+        "x": 390,
+        "y": 1260,
+        "wires": [
+            [
+                "eacde6a965027175"
+            ]
+        ]
+    },
+    {
+        "id": "c345a7f4ca49c4c1",
+        "type": "ui_group",
+        "name": "Consulta",
+        "tab": "219bf782a7bcea97",
+        "order": 2,
+        "disp": true,
+        "width": "11",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1899bc6a4ef86be0",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "registro_aspirantes",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "d1b3ee5915f0f6fc",
+        "type": "ui_group",
+        "name": "Formulario",
+        "tab": "219bf782a7bcea97",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f8e2a155c79689dd",
+        "type": "telegram bot",
+        "botname": "TicsCRM",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "08e714efc0a7691b",
+        "type": "ui_group",
+        "name": "Formulario",
+        "tab": "4c2659b30526538e",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "715dc720058e50a5",
+        "type": "ui_group",
+        "name": "Consulta",
+        "tab": "4c2659b30526538e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "219bf782a7bcea97",
+        "type": "ui_tab",
+        "name": "Registro de aspirantes",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4c2659b30526538e",
+        "type": "ui_tab",
+        "name": "Consulta de aspirantes",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
